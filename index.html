@@ -1130,10 +1130,11 @@
             <h2>Envoie-moi un message</h2>
             <p class="form-subtitle">Une question, une id&eacute;e de vid&eacute;o, un projet &agrave; partager ? Je lis tout.</p>
 
-            <form id="contactForm">
+            <form id="contactForm" method="POST">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_subject" value="Nouveau message depuis le site Papa Samuz">
                 <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_next" value="https://papasamuz17.github.io/sitepapasamuz-co/?sent=1">
 
                 <div class="form-group">
                     <label for="name">Nom / Pseudo</label>
@@ -1346,43 +1347,18 @@
             });
         });
 
-        /* ──── Contact Form (email hidden) ──── */
+        /* ──── Contact Form (email hidden, POST classique) ──── */
         (function() {
             const form = document.getElementById('contactForm');
-            const success = document.getElementById('formSuccess');
             const p = ['papas','mauz','17@','gm','ail','.com'];
-            const target = 'https://formsubmit.co/ajax/' + p.join('');
+            form.action = 'https://formsubmit.co/' + p.join('');
 
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const btn = form.querySelector('.form-submit-btn');
-                btn.textContent = 'Envoi en cours...';
-                btn.disabled = true;
-
-                const data = new FormData(form);
-
-                fetch(target, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: data
-                })
-                .then(r => r.json())
-                .then(data => {
-                    if (data.success === 'true' || data.success === true) {
-                        form.style.display = 'none';
-                        success.classList.add('show');
-                    } else {
-                        btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/></svg> Envoyer';
-                        btn.disabled = false;
-                        alert('Erreur lors de l\'envoi. R\u00e9essaie.');
-                    }
-                })
-                .catch(() => {
-                    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/></svg> Envoyer';
-                    btn.disabled = false;
-                    alert('Erreur r\u00e9seau. V\u00e9rifie ta connexion.');
-                });
-            });
+            /* Affiche le message de succès si retour après envoi */
+            if (window.location.search.includes('sent=1')) {
+                form.style.display = 'none';
+                document.getElementById('formSuccess').classList.add('show');
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            }
         })();
     </script>
 </body>
