@@ -1152,6 +1152,78 @@
             font-size: 0.95rem;
         }
 
+        /* ═══════════════════ SUBSCRIBER COUNTER ═══════════════════ */
+        .sub-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .sub-count {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .sub-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            letter-spacing: 0.05em;
+        }
+
+        /* ═══════════════════ FOOTER LEGAL ═══════════════════ */
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-legal-link {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            opacity: 0.6;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-legal-link:hover {
+            color: var(--cyan);
+            opacity: 1;
+        }
+
+        /* ═══════════════════ LEGAL MODAL ═══════════════════ */
+        .legal-modal {
+            max-width: 640px;
+        }
+
+        .legal-content h3 {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--cyan);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-content p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .legal-content p strong {
+            color: var(--text);
+        }
+
         /* ═══════════════════ CUSTOM SCROLLBAR (WEBKIT) ═══════════════════ */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--dark); }
@@ -1568,6 +1640,10 @@
         <div class="cta-box">
             <span class="cta-icon">&#x1F527;</span>
             <h2>Rejoins l'atelier</h2>
+            <div class="sub-counter" id="subCounter">
+                <span class="sub-count" id="subCount">...</span>
+                <span class="sub-label">abonn&eacute;s sur YouTube</span>
+            </div>
             <p>Abonne-toi pour ne rien rater : nouveaux projets, d&eacute;couvertes tech, et histoires racont&eacute;es comme nulle part ailleurs.</p>
             <a href="https://www.youtube.com/@PAPASAMUZ" target="_blank" rel="noopener" class="btn btn-primary">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1576,6 +1652,60 @@
         </div>
     </section>
 
+    <!-- ═══ MENTIONS LEGALES MODAL ═══ -->
+    <div class="order-modal-overlay" id="legalModalOverlay">
+        <div class="order-modal legal-modal">
+            <button class="order-modal-close" onclick="closeLegalModal()">&times;</button>
+            <h2>Mentions L&eacute;gales</h2>
+            <p class="modal-subtitle">Conform&eacute;ment &agrave; la loi n&deg; 2004-575 du 21 juin 2004 (LCEN)</p>
+
+            <div class="legal-content">
+                <h3>1. &Eacute;diteur du site</h3>
+                <p>
+                    <strong>Nom / D&eacute;nomination :</strong> [VOTRE NOM OU NOM COMMERCIAL]<br>
+                    <strong>Statut :</strong> Auto-entrepreneur<br>
+                    <strong>SIRET :</strong> [VOTRE NUM&Eacute;RO SIRET]<br>
+                    <strong>Adresse :</strong> [VOTRE ADRESSE]<br>
+                    <strong>Email :</strong> papasamuz17(at)gmail.com<br>
+                    <strong>Directeur de la publication :</strong> [VOTRE NOM]
+                </p>
+
+                <h3>2. H&eacute;bergeur</h3>
+                <p>
+                    <strong>GitHub Pages</strong><br>
+                    GitHub, Inc.<br>
+                    88 Colin P Kelly Jr St, San Francisco, CA 94107, USA<br>
+                    https://github.com
+                </p>
+
+                <h3>3. Propri&eacute;t&eacute; intellectuelle</h3>
+                <p>
+                    L'ensemble du contenu de ce site (textes, images, logo, vid&eacute;os) est la propri&eacute;t&eacute; exclusive de Papa Samuz, sauf mention contraire.
+                    Toute reproduction, m&ecirc;me partielle, est interdite sans autorisation pr&eacute;alable.
+                </p>
+
+                <h3>4. Donn&eacute;es personnelles</h3>
+                <p>
+                    Les donn&eacute;es collect&eacute;es via les formulaires de contact et de commande (nom, email, adresse) sont utilis&eacute;es uniquement pour traiter vos demandes et commandes.
+                    Elles ne sont ni vendues, ni c&eacute;d&eacute;es &agrave; des tiers. Les emails sont envoy&eacute;s via le service FormSubmit.co.
+                    Conform&eacute;ment au RGPD, vous pouvez demander la suppression de vos donn&eacute;es en &eacute;crivant &agrave; papasamuz17(at)gmail.com.
+                </p>
+
+                <h3>5. Cookies</h3>
+                <p>
+                    Ce site n'utilise aucun cookie de suivi ni outil d'analyse (pas de Google Analytics, pas de trackers).
+                </p>
+
+                <h3>6. Conditions de vente (Merch)</h3>
+                <p>
+                    Les prix affich&eacute;s sont en euros TTC. Les commandes sont pass&eacute;es par formulaire et confirm&eacute;es par email.
+                    Le paiement est effectu&eacute; apr&egrave;s confirmation de la commande. Les d&eacute;lais de livraison sont communiqu&eacute;s par email.
+                    Droit de r&eacute;tractation : conform&eacute;ment &agrave; l'article L221-18 du Code de la consommation, vous disposez de 14 jours pour exercer votre droit de r&eacute;tractation.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- ═══ FOOTER ═══ -->
     <footer>
         <div class="footer-inner">
@@ -1583,7 +1713,10 @@
                 <img src="logo.jpg" alt="Papa Samuz">
                 <span>PAPA SAMUZ</span>
             </div>
-            <p class="footer-copy">&copy; 2025 Papa Samuz. Tous droits r&eacute;serv&eacute;s.</p>
+            <div class="footer-center">
+                <p class="footer-copy">&copy; 2025 Papa Samuz. Tous droits r&eacute;serv&eacute;s.</p>
+                <a href="#" class="footer-legal-link" onclick="openLegalModal(); return false;">Mentions l&eacute;gales</a>
+            </div>
             <div class="footer-socials">
                 <a href="https://www.youtube.com/@PAPASAMUZ" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
                     <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1817,6 +1950,35 @@
                 document.getElementById('merch').scrollIntoView({ behavior: 'smooth' });
             }
         })();
+
+        /* ──── YouTube Subscriber Counter ──── */
+        (function() {
+            var cid = 'UC3tgTQFhWrjdrh4cBF8ERMQ';
+            fetch('https://api.socialcounts.org/youtube-live-subscriber-count/' + cid)
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    var count = data.counters && data.counters.api && data.counters.api.subscriberCount;
+                    if (count) {
+                        document.getElementById('subCount').textContent = count.toLocaleString('fr-FR');
+                    }
+                })
+                .catch(function() {
+                    document.getElementById('subCounter').style.display = 'none';
+                });
+        })();
+
+        /* ──── Legal Modal ──── */
+        window.openLegalModal = function() {
+            document.getElementById('legalModalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        window.closeLegalModal = function() {
+            document.getElementById('legalModalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        document.getElementById('legalModalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeLegalModal();
+        });
     </script>
 </body>
 </html>
