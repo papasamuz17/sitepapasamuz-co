@@ -1951,6 +1951,24 @@
             }
         })();
 
+        /* ──── Click-to-play YouTube videos ──── */
+        document.querySelectorAll('.video-embed').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var url = this.href;
+                var match = url.match(/[?&]v=([^&]+)/);
+                if (!match) return;
+                var videoId = match[1];
+                var iframe = document.createElement('iframe');
+                iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0';
+                iframe.setAttribute('allow', 'autoplay; encrypted-media');
+                iframe.setAttribute('allowfullscreen', '');
+                this.innerHTML = '';
+                this.appendChild(iframe);
+                this.style.pointerEvents = 'none';
+            });
+        });
+
         /* ──── YouTube Subscriber Counter ──── */
         (function() {
             var cid = 'UC3tgTQFhWrjdrh4cBF8ERMQ';
